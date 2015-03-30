@@ -8,12 +8,14 @@ RUN /usr/local/sbin/builder-enter
 
 
 # Install packages
-RUN apt-get -q update         \
- && apt-get -y -qq upgrade    \
- && apt-get -y -qq install    \
-	nginx-full            \
-        mysql-server          \
-        php5-fpm              \
+RUN apt-get -q update		\
+ && apt-get -y -qq upgrade   	\
+ && apt-get -y -qq install    	\
+    emacs vim			\
+    git mercurial subversion	\
+    nginx-full            	\
+    mysql-server          	\
+    php5-fpm              	\
  && apt-get clean
 
 
