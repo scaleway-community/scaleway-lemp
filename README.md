@@ -5,6 +5,8 @@ Scripts to build the official LEMP image on Online Labs
 
 This image is built using [Image Tools](https://github.com/online-labs/image-tools) and depends on the official [Ubuntu](https://github.com/online-labs/image-ubuntu) image.
 
+<img src="http://upload.wikimedia.org/wikipedia/commons/thumb/2/27/PHP-logo.svg/500px-PHP-logo.svg.png" width="400px" />
+
 ---
 
 **This image is meant to be used on a C1 server.**
