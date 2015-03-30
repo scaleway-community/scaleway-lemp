@@ -18,6 +18,7 @@ RUN apt-get -q update				\
     php5-cgi php5-cli php5-fpm php5-mysql 	\
     php5-gd php-apc php-pear php5-common 	\
     php5-curl php5-mcrypt php5-memcached	\
+    php5-sqlite 	  			\
     memcached	      	       			\
  && apt-get clean
 
@@ -46,7 +47,12 @@ RUN update-rc.d memcached enable
 
 
 # MySQL
-# RUN mysql_install_db
+RUN chmod 1777 /tmp && \
+    mysql_install_db && \
+    /etc/init.d/mysql start && \
+    apt-get install -q -y phpmyadmin && \
+    apt-get clean && \
+    /etc/init.d/mysql stop
 
 
 # Clean rootfs from image-builder
