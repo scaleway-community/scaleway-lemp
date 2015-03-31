@@ -1,11 +1,38 @@
 #!/usr/bin/env bash
 
-/etc/init.d/mysql stop
-mysqld --skip-grant-tables &
-sleep 10
+# We need this extra script run ONCE on startup to initialize the
+# database with per-image passwords.
 
+MYSQL_ROOT_PASSWORD=$(head /dev/urandom -c16 | base64 | sed 's/.\{2\}$//')
 
-echo "UPDATE user SET Password=PASSWORD('') WHERE User='root'; FLUSH PRIVILEGES; exit;" | mysql -u root mysql
+# MOTD
+sed -i "s/{mysql_root_password}/$MYSQL_ROOT_PASSWORD/" /etc/update-motd.d/60-app-lemp
+
+# Let's install MySQL
+MYSQL_PRESEED_FILE="/tmp/preseed-mysql"
+cat <<EOF > $MYSQL_PRESEED_FILE
+mysql-server-5.5 mysql-server/root_password_again password $MYSQL_ROOT_PASSWORD
+mysql-server-5.5 mysql-server/root_password password $MYSQL_ROOT_PASSWORD
+mysql-server-5.5 mysql-server/start_on_boot boolean true
+EOF
+chmod 1777 /tmp
+debconf-set-selections $MYSQL_PRESEED_FILE
+apt-get install -q -y mysql-server-5.5
+rm -f $MYSQL_PRESEED_FILE
+update-rc.d mysql enable
+
+# Let's install phpmyadmin
+PHPMYADMIN_PRESEED_FILE="/tmp/preseed-phpmyadmin"
+cat <<EOF > $PHPMYADMIN_PRESEED_FILE
+phpmyadmin phpmyadmin/app-password-confirm password
+phpmyadmin phpmyadmin/dbconfig-install boolean true
+phpmyadmin phpmyadmin/mysql/admin-pass password $MYSQL_ROOT_PASSWORD
+EOF
+debconf-set-selections $PHPMYADMIN_PRESEED_FILE
+apt-get install -q -y phpmyadmin
+rm -f $PHPMYADMIN_PRESEED_FILE
 
 # this service is only needed on the first boot so we remove it here.
 rm -f /etc/init/init-mysq.conf
+
+echo $MOTD

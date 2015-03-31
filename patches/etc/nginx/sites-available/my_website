@@ -1,6 +1,19 @@
+# Hey! I'm your web server configuration, it's a pleasure to meet you :)
+
 server {
-       listen 80;
+       # Replace the following line with your domain name
        server_name your.domain.com;
+
+       # Comment the following block if you want to disallow phpmyadmin
+       location /phpmyadmin/ {
+                alias /usr/share/phpmyadmin/;
+                index index.php;
+       }
+
+       # You can safely leave the rest as if, unless you know what you
+       # are doing.
+       listen 80;
+
        root /var/www/my_website;
        index index.php index.html index.htm;
 
@@ -20,10 +33,5 @@ server {
 		fastcgi_index index.php;
 		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
 		include fastcgi_params;
-       }
-
-       location /phpmyadmin/ {
-                alias /usr/share/phpmyadmin/;
-                index index.php;
        }
 }
