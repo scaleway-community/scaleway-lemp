@@ -4,12 +4,6 @@ server {
        # Replace the following line with your domain name
        server_name your.domain.com;
 
-       # Comment the following block if you want to disallow phpmyadmin
-       location /phpmyadmin/ {
-                alias /usr/share/phpmyadmin/;
-                index index.php;
-       }
-
        # You can safely leave the rest as if, unless you know what you
        # are doing.
        listen 80;

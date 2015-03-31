@@ -3,6 +3,8 @@
 # We need this extra script run ONCE on startup to initialize the
 # database with per-image passwords.
 
+export DEBIAN_FRONTEND=noninteractive
+
 MYSQL_ROOT_PASSWORD=$(head /dev/urandom -c 512 | sha1sum | awk '// { print $1; }')
 
 # MOTD & README
@@ -32,6 +34,7 @@ EOF
 debconf-set-selections $PHPMYADMIN_PRESEED_FILE
 apt-get install -q -y phpmyadmin
 rm -f $PHPMYADMIN_PRESEED_FILE
+ln -sf /usr/share/phpmyadmin /var/www/my_website/phpmyadmin
 
 # this service is only needed on the first boot so we remove it here.
-rm -f /etc/init/init-mysq.conf
+rm -f /etc/init/init-mysql.conf

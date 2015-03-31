@@ -28,8 +28,4 @@ Your website configuration lies at:
 
 - /etc/nginx/sites-available/my_website
 
-We recommend you to have a look at it (if you need to disable
-phpmyadmin or to add a domain name, this is the place you are looking
-for).
-
 Enjoy!
