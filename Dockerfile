@@ -30,6 +30,7 @@ RUN curl -sS https://getcomposer.org/installer | php \
 # Patches
 ADD patches/etc/ /etc/
 ADD patches/usr/ /usr/
+ADD patches/root/ /root/
 
 
 # Dummy website

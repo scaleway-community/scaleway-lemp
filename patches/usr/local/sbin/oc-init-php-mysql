@@ -5,7 +5,7 @@
 
 MYSQL_ROOT_PASSWORD=$(head /dev/urandom -c 512 | sha1sum | awk '// { print $1; }')
 
-# MOTD
+# MOTD & README
 sed -i "s/{mysql_root_password}/$MYSQL_ROOT_PASSWORD/" /etc/update-motd.d/60-app-lemp
 sed -i "s/{mysql_root_password}/$MYSQL_ROOT_PASSWORD/" /root/README
 
@@ -32,6 +32,8 @@ EOF
 debconf-set-selections $PHPMYADMIN_PRESEED_FILE
 apt-get install -q -y phpmyadmin
 rm -f $PHPMYADMIN_PRESEED_FILE
+
+update-rc.d mysql enable
 
 # this service is only needed on the first boot so we remove it here.
 rm -f /etc/init/init-mysq.conf
