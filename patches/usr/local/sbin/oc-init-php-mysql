@@ -3,7 +3,7 @@
 # We need this extra script run ONCE on startup to initialize the
 # database with per-image passwords.
 
-MYSQL_ROOT_PASSWORD=$(head /dev/urandom -c16 | base64 | sed 's/.\{2\}$//')
+MYSQL_ROOT_PASSWORD=$(head /dev/urandom -c 512 | sha1sum | awk '// { print $1; }')
 
 # MOTD
 sed -i "s/{mysql_root_password}/$MYSQL_ROOT_PASSWORD/" /etc/update-motd.d/60-app-lemp
@@ -34,5 +34,3 @@ rm -f $PHPMYADMIN_PRESEED_FILE
 
 # this service is only needed on the first boot so we remove it here.
 rm -f /etc/init/init-mysq.conf
-
-echo $MOTD
