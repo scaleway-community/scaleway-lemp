@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+/etc/init.d/mysql stop
+mysqld --skip-grant-tables &
+sleep 10
+
+
+echo "UPDATE user SET Password=PASSWORD('') WHERE User='root'; FLUSH PRIVILEGES; exit;" | mysql -u root mysql
+
+# this service is only needed on the first boot so we remove it here.
+rm -f /etc/init/init-mysq.conf
