@@ -22,6 +22,24 @@ RUN apt-get -q update				\
  && apt-get clean
 
 
+# Enable extensions
+RUN php5enmod apc \
+    apcu \
+    curl \
+    gd \
+    json \
+    mcrypt \
+    memcached \
+    mysqli \
+    mysql \
+    opcache \
+    pdo \
+    pdo_mysql \
+    pdo_sqlite \
+    readline \
+    sqlite3
+
+
 # Extra deps
 RUN curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer
