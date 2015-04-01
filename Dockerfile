@@ -52,8 +52,9 @@ ADD patches/root/ /root/
 
 
 # Dummy website
-RUN mkdir -p /var/www/my_website \
-    && echo '<?php phpinfo();' > /var/www/my_website/index.php \
+RUN mkdir -p /var/www/my_website/phpmyadmin \
+    && echo 'Your server is being configured, refresh this page in a few seconds...' > /var/www/my_website/index.php \
+    && cp /var/www/my_website/index.php /var/www/my_website/phpmyadmin/index.php \
     && ln -s /etc/nginx/sites-available/my_website /etc/nginx/sites-enabled/my_website \
     && rm -f /etc/nginx/sites-enabled/default
 

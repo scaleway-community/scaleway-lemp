@@ -35,7 +35,12 @@ EOF
 debconf-set-selections $PHPMYADMIN_PRESEED_FILE
 apt-get install -q -y phpmyadmin
 rm -f $PHPMYADMIN_PRESEED_FILE
+
+# Go live
+rm -rf /var/www/my_website/phpmyadmin
+echo "<?php phpinfo();" > /var/www/my_website/index.php
 ln -sf /usr/share/phpmyadmin /var/www/my_website/phpmyadmin
 
 # this service is only needed on the first boot so we remove it here.
 rm -f /etc/init/init-mysql.conf
+rm -f /usr/local/sbin/oc-init-php-mysql
