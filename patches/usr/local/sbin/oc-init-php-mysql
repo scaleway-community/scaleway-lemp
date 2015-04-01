@@ -30,6 +30,7 @@ cat <<EOF > $PHPMYADMIN_PRESEED_FILE
 phpmyadmin phpmyadmin/app-password-confirm password
 phpmyadmin phpmyadmin/dbconfig-install boolean true
 phpmyadmin phpmyadmin/mysql/admin-pass password $MYSQL_ROOT_PASSWORD
+phpmyadmin phpmyadmin/mysql/app-pass password
 EOF
 debconf-set-selections $PHPMYADMIN_PRESEED_FILE
 apt-get install -q -y phpmyadmin
