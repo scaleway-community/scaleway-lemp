@@ -12,17 +12,10 @@ sed -i "s/{mysql_root_password}/$MYSQL_ROOT_PASSWORD/" /etc/update-motd.d/60-app
 sed -i "s/{mysql_root_password}/$MYSQL_ROOT_PASSWORD/" /root/README
 
 # Let's install MySQL
-MYSQL_PRESEED_FILE="/tmp/preseed-mysql"
-cat <<EOF > $MYSQL_PRESEED_FILE
-mysql-server-5.5 mysql-server/root_password_again password $MYSQL_ROOT_PASSWORD
-mysql-server-5.5 mysql-server/root_password password $MYSQL_ROOT_PASSWORD
-mysql-server-5.5 mysql-server/start_on_boot boolean true
-EOF
 chmod 1777 /tmp
-debconf-set-selections $MYSQL_PRESEED_FILE
 apt-get install -q -y mysql-server-5.5
-rm -f $MYSQL_PRESEED_FILE
 update-rc.d mysql enable
+mysqladmin -u root password $MYSQL_ROOT_PASSWORD
 
 # Let's install phpmyadmin
 PHPMYADMIN_PRESEED_FILE="/tmp/preseed-phpmyadmin"
