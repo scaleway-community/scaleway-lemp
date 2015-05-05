@@ -1,13 +1,13 @@
 DOCKER_NAMESPACE =	armbuild/
-NAME =			ocs-app-lemp
+NAME =			scw-app-lemp
 VERSION =		latest
 VERSION_ALIASES =
 TITLE =			LEMP
 DESCRIPTION =		LEMP
-SOURCE_URL =		https://github.com/online-labs/image-app-lemp
+SOURCE_URL =		https://github.com/scaleway/image-app-lemp
 
 
-## Image tools  (https://github.com/online-labs/image-tools)
+## Image tools  (https://github.com/scaleway/image-tools)
 all:	docker-rules.mk
 docker-rules.mk:
 	wget -qO - http://j.mp/scw-builder | bash

@@ -15,7 +15,7 @@ The folder `/var/www/my_website` contains your website (for now, it is a phpinfo
 
 Useful links:
 
-- https://github.com/online-labs/image-app-lemp
+- https://github.com/scaleway/image-app-lemp
 - http://your-ip/phpmyadmin
 - http://your-ip/
 

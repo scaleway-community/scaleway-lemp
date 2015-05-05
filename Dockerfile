@@ -1,6 +1,6 @@
-## -*- docker-image-name: "armbuild/ocs-app-lemp:latest" -*-
-FROM armbuild/ocs-distrib-ubuntu:trusty
-MAINTAINER Online Labs <opensource@ocs.online.net> (@online_en)
+## -*- docker-image-name: "armbuild/scw-app-lemp:latest" -*-
+FROM armbuild/scw-distrib-ubuntu:trusty
+MAINTAINER Scaleway <opensource@scaleway.com> (@scaleway)
 
 
 # Prepare rootfs for image-builder
