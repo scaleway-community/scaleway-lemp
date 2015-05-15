@@ -2,7 +2,7 @@
 
 [![Travis](https://img.shields.io/travis/scaleway/image-app-lemp.svg)](https://travis-ci.org/scaleway/image-app-lemp)
 [![Scaleway ImageHub](https://img.shields.io/badge/ImageHub-view-ff69b4.svg)](https://hub.scaleway.com/lemp.html)
-[![Run on Scaleway](https://img.shields.io/badge/Scaleway-run-69b4ff.svg)](https://cloud.scaleway.com/#/servers/new?image=cd42a543-95ee-44a9-98e1-6d8b1f4e8363)
+[![Run on Scaleway](https://img.shields.io/badge/Scaleway-run-69b4ff.svg)](https://cloud.scaleway.com/#/servers/new?image=5eccd1ae-2ac0-4e24-9cdb-fe5d42c1e321)
 
 
 Scripts to build the official LEMP image on Scaleway
