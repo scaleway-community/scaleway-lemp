@@ -23,7 +23,7 @@ and configured:
 - phpmyadmin
 - composer
 
-The folder `/var/www/my_website` contains your website (for now, it is a phpinfo).
+The folder /var/www/my_website contains your website (for now, it is a phpinfo).
 
 Useful links:
 
