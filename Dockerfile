@@ -17,7 +17,7 @@ RUN apt-get -q update				\
     php5-cgi php5-cli php5-fpm 			\
     php5-gd php-apc php-pear php5-common 	\
     php5-curl php5-mcrypt php5-memcached	\
-    php5-sqlite 	  			\
+    php5-sqlite php5-mysql	  			\
     memcached	      	       			\
  && apt-get clean
 
