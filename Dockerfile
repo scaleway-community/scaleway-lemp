@@ -1,5 +1,5 @@
-## -*- docker-image-name: "armbuild/scw-app-lemp:latest" -*-
-FROM armbuild/scw-distrib-ubuntu:trusty
+## -*- docker-image-name: "scaleway/lemp:latest" -*-
+FROM scaleway/ubuntu:trusty
 MAINTAINER Scaleway <opensource@scaleway.com> (@scaleway)
 
 

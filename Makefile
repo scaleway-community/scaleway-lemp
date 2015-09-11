@@ -1,5 +1,4 @@
-DOCKER_NAMESPACE =	armbuild/
-NAME =			scw-app-lemp
+NAME =			lemp
 VERSION =		latest
 VERSION_ALIASES =
 TITLE =			LEMP
