@@ -1,6 +1,6 @@
 # Official LEMP image on Scaleway
 
-[![Travis](https://img.shields.io/travis/scaleway/image-app-lemp.svg)](https://travis-ci.org/scaleway/image-app-lemp)
+[![Travis](https://img.shields.io/travis/scaleway-community/scaleway-lemp.svg)](https://travis-ci.org/scaleway-community/scaleway-lemp)
 [![Scaleway ImageHub](https://img.shields.io/badge/ImageHub-view-ff69b4.svg)](https://hub.scaleway.com/lemp.html)
 [![Run on Scaleway](https://img.shields.io/badge/Scaleway-run-69b4ff.svg)](https://cloud.scaleway.com/#/servers/new?image=5eccd1ae-2ac0-4e24-9cdb-fe5d42c1e321)
 
@@ -9,7 +9,7 @@ Scripts to build the official LEMP image on Scaleway
 
 This image is built using [Image Tools](https://github.com/scaleway/image-tools) and depends on the official [Ubuntu](https://github.com/scaleway/image-ubuntu) image.
 
-<img src="https://raw.githubusercontent.com/scaleway/image-app-lemp/master/assets/multi-logo-lemp.png" width="400px" />
+<img src="https://raw.githubusercontent.com/scaleway-community/scaleway-lemp/master/assets/multi-logo-lemp.png" width="400px" />
 
 ---
 

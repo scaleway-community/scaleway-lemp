@@ -1,10 +1,9 @@
-DOCKER_NAMESPACE =	armbuild/
-NAME =			scw-app-lemp
+NAME =			lemp
 VERSION =		latest
 VERSION_ALIASES =
 TITLE =			LEMP
 DESCRIPTION =		LEMP
-SOURCE_URL =		https://github.com/scaleway/image-app-lemp
+SOURCE_URL =		https://github.com/scaleway-community/scaleway-lemp
 
 IMAGE_VOLUME_SIZE =	50G
 IMAGE_BOOTSCRIPT =	stable
