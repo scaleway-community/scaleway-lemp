@@ -1,13 +1,6 @@
 #!/bin/bash
 
-METADATA=$(oc-metadata --cached)
-
-metadata() {
-    key=$1
-    echo "$METADATA" | grep "^$key=" | cut -d= -f2 | sed "s/^['\"]//;s/['\"]$//"
-}
-
-PUBLIC_IP=$(metadata PUBLIC_IP_ADDRESS)
+PUBLIC_IP=$(oc-metadata --cached PUBLIC_IP_ADDRESS)
 
 cat <<EOF
 Hi Cloud Rider,
