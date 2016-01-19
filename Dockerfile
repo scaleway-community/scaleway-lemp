@@ -1,5 +1,13 @@
 ## -*- docker-image-name: "scaleway/lemp:latest" -*-
-FROM scaleway/ubuntu:trusty
+FROM scaleway/ubuntu:amd64-trusty
+# following 'FROM' lines are used dynamically thanks do the image-builder
+# which dynamically update the Dockerfile if needed.
+#FROM scaleway/ubuntu:armhf-trusty       # arch=armv7l
+#FROM scaleway/ubuntu:arm64-trusty       # arch=arm64
+#FROM scaleway/ubuntu:i386-trusty        # arch=i386
+#FROM scaleway/ubuntu:mips-trusty        # arch=mips
+
+
 MAINTAINER Scaleway <opensource@scaleway.com> (@scaleway)
 
 
@@ -17,8 +25,8 @@ RUN apt-get -q update				\
     php5-cgi php5-cli php5-fpm 			\
     php5-gd php-apc php-pear php5-common 	\
     php5-curl php5-mcrypt php5-memcached	\
-    php5-sqlite php5-mysql	  			\
-    mysql-server	      	       			\
+    php5-sqlite php5-mysql	  		\
+    mysql-server	      	       		\
     memcached	      	       			\
  && apt-get clean
 
@@ -47,9 +55,7 @@ RUN curl -sS https://getcomposer.org/installer | php \
 
 
 # Patches
-ADD patches/etc/ /etc/
-ADD patches/usr/ /usr/
-ADD patches/root/ /root/
+COPY ./overlay /
 
 
 # Dummy website
