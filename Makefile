@@ -13,5 +13,5 @@ IMAGE_NAME =		LEMP - Nginx+PHP+MySQL
 ## Image tools  (https://github.com/scaleway/image-tools)
 all:	docker-rules.mk
 docker-rules.mk:
-	wget -qO - http://j.mp/scw-builder | bash
+	wget -qO - https://j.mp/scw-builder | bash
 -include docker-rules.mk
