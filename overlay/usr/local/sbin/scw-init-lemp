@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+# We need this extra script run ONCE on startup to initialize the
+# database with per-image passwords.
+
+mysql_package="$(dpkg --get-selections | cut -d $'\t' -f 1 | egrep -m 1 '^mysql-server-[0-9\.]+$')"
+
+export DEBIAN_FRONTEND=noninteractive
+
+if [[ "$(uname -p)" = aarch64 ]]; then
+    rm -rf /var/lib/mysql
+    dpkg-reconfigure -plow "${mysql_package}"
+fi
+
+
+MYSQL_ROOT_PASSWORD="$(head /dev/urandom -c 512 | sha1sum | cut -d ' ' -f 1)"
+
+mysql -u root -e "alter user root@localhost identified with mysql_native_password by '${MYSQL_ROOT_PASSWORD}';"
+
+# MOTD & README
+for file in /etc/update-motd.d/60-app-lemp /root/README; do
+    sed -i "s/{mysql_root_password}/${MYSQL_ROOT_PASSWORD}/" "${file}"
+done
+
+# Let's install phpmyadmin
+PHPMYADMIN_PRESEED_FILE="$(mktemp)"
+trap "rm -f \"${PHPMYADMIN_PRESEED_FILE}\"" EXIT
+cat <<EOF > "$PHPMYADMIN_PRESEED_FILE"
+phpmyadmin phpmyadmin/app-password-confirm password
+phpmyadmin phpmyadmin/dbconfig-install boolean true
+phpmyadmin phpmyadmin/mysql/admin-pass password ${MYSQL_ROOT_PASSWORD}
+phpmyadmin phpmyadmin/mysql/app-pass password
+EOF
+
+debconf-set-selections "${PHPMYADMIN_PRESEED_FILE}"
+apt-get install -q -y phpmyadmin
+
+# Go live
+rm -rf /var/www/my_website/phpmyadmin
+echo "<?php phpinfo();" > /var/www/my_website/index.php
+ln -sf /usr/share/phpmyadmin /var/www/my_website/phpmyadmin
+
+systemctl disable init-lemp

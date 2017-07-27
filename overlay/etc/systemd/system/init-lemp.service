@@ -1,0 +1,11 @@
+[Unit]
+Description=initialize LEMP on first boot
+Before=nginx.service
+After=mysql.service
+
+[Service]
+ExecStart=/usr/local/sbin/scw-init-lemp
+Type=oneshot
+
+[Install]
+WantedBy=multi-user.target

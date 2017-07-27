@@ -1,19 +1,17 @@
-## -*- docker-image-name: "scaleway/lemp:latest" -*-
-FROM scaleway/ubuntu:amd64-trusty
+## -*- docker-image-name: "scaleway/lemp:xenial" -*-
+FROM scaleway/ubuntu:amd64-xenial
 # following 'FROM' lines are used dynamically thanks do the image-builder
 # which dynamically update the Dockerfile if needed.
-#FROM scaleway/ubuntu:armhf-trusty       # arch=armv7l
-#FROM scaleway/ubuntu:arm64-trusty       # arch=arm64
-#FROM scaleway/ubuntu:i386-trusty        # arch=i386
-#FROM scaleway/ubuntu:mips-trusty        # arch=mips
+#FROM scaleway/ubuntu:armhf-xenial    # arch=armv7l
+#FROM scaleway/ubuntu:arm64-xenial    # arch=arm64
+#FROM scaleway/ubuntu:i386-xenial     # arch=i386
+#FROM scaleway/ubuntu:mips-xenial     # arch=mips
 
 
 MAINTAINER Scaleway <opensource@scaleway.com> (@scaleway)
 
-
 # Prepare rootfs for image-builder
 RUN /usr/local/sbin/builder-enter
-
 
 # Install packages
 RUN apt-get -q update				\
@@ -22,25 +20,25 @@ RUN apt-get -q update				\
     emacs vim					\
     git mercurial subversion			\
     nginx-full            			\
-    php5-cgi php5-cli php5-fpm 			\
-    php5-gd php-apc php-pear php5-common 	\
-    php5-curl php5-mcrypt php5-memcached	\
-    php5-sqlite php5-mysql	  		\
-    mysql-server	      	       		\
-    memcached	      	       			\
+    php-cgi php-cli php-fpm 			\
+    php-gd php-pear php-apcu			\
+    php-curl php-mcrypt php-memcached		\
+    php-sqlite3 php-mysql			\
+    mysql-server				\
+    memcached					\
  && apt-get clean
 
 
 # Enable extensions
-RUN php5enmod apc \
-    apcu \
+RUN phpenmod  apcu \
     curl \
     gd \
     json \
     mcrypt \
     memcached \
     mysqli \
-    mysql \
+    mysqlnd \
+    pdo_mysql \
     opcache \
     pdo \
     pdo_mysql \
@@ -64,12 +62,6 @@ RUN mkdir -p /var/www/my_website/phpmyadmin \
     && cp /var/www/my_website/index.php /var/www/my_website/phpmyadmin/index.php \
     && ln -s /etc/nginx/sites-available/my_website /etc/nginx/sites-enabled/my_website \
     && rm -f /etc/nginx/sites-enabled/default
-
-
-# Enable services
-RUN update-rc.d php5-fpm enable
-RUN update-rc.d nginx enable
-RUN update-rc.d memcached enable
 
 
 # Clean rootfs from image-builder
