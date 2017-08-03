@@ -7,7 +7,7 @@ SOURCE_URL =		https://github.com/scaleway-community/scaleway-lemp
 DEFAULT_IMAGE_ARCH =	x86_64
 
 IMAGE_VOLUME_SIZE =	50G
-IMAGE_BOOTSCRIPT =	stable
+IMAGE_BOOTSCRIPT =
 IMAGE_NAME =		LEMP - Nginx+PHP+MySQL
 
 ## Image tools  (https://github.com/scaleway/image-tools)
