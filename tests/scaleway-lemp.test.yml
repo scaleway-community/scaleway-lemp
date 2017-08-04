@@ -1,0 +1,12 @@
+- system_state: running
+- http:
+    requests:
+      - {}
+      - url: /phpmyadmin/
+- service:
+    - mysql
+    - nginx
+    - php7.0-fpm
+    - name: init-lemp
+      running: false
+      enabled: false
