@@ -1,0 +1,7 @@
+IMAGE_ID="LEMP"
+IMAGE_RELEASE=2018-04-25
+IMAGE_CODENAME=lemp
+IMAGE_DESCRIPTION="LEMP"
+IMAGE_HELP_URL="https://github.com/scaleway-community/scaleway-lemp"
+IMAGE_SOURCE_URL="https://github.com/scaleway-community/scaleway-lemp"
+IMAGE_DOC_URL="https://github.com/scaleway-community/scaleway-lemp"
