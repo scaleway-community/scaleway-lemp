@@ -2,7 +2,7 @@
 
 ARG SCW_ARCH
 
-FROM scaleway/ubuntu:${SCW_ARCH}-xenial
+FROM scaleway/ubuntu:${SCW_ARCH}-bionic
 
 MAINTAINER Scaleway <opensource@scaleway.com> (@scaleway)
 
@@ -11,16 +11,17 @@ RUN /usr/local/sbin/builder-enter
 
 # Install packages
 RUN apt-get -q update				\
- && apt-get -y -qq upgrade   			\
+ && apt-get -y -o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confnew upgrade  \
  && apt-get -y -qq install    			\
     emacs vim					\
     git mercurial subversion			\
     nginx-full            			\
     php-cgi php-cli php-fpm 			\
     php-gd php-pear php-apcu			\
-    php-curl php-mcrypt php-memcached		\
+    php-curl php-memcached		\
     php-sqlite3 php-mysql			\
     mysql-server				\
+    libmcrypt-dev      \
     memcached					\
  && apt-get clean
 
